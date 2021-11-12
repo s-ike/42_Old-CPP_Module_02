@@ -6,11 +6,12 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/12 18:28:25 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 00:45:04 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cmath>
 #include "Fixed.hpp"
 
 /* ************************************************************************** */
@@ -40,7 +41,7 @@ Fixed::Fixed(const int x)
 Fixed::Fixed(const float x)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_fixed_point_val = static_cast<int>(roundf(x * (1 << _bits)));
+	_fixed_point_val = static_cast<int>(std::roundf(x * (1 << _bits)));
 }
 
 Fixed::~Fixed()
