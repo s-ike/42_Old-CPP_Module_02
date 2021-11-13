@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 16:21:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/12 22:13:30 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 11:35:59 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	Fixed(const float x);
 	~Fixed();
 	Fixed(const Fixed& other);
-	Fixed&	operator=(const Fixed &other);
+	Fixed&	operator=(const Fixed& other);
 
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
@@ -50,10 +50,12 @@ public:
 	Fixed&	operator--();
 	Fixed	operator--(int);
 
-	static Fixed&		min(Fixed&x, Fixed& y);
-	static const Fixed&	min(const Fixed&x, const Fixed& y);
-	static Fixed&		max(Fixed&x, Fixed& y);
-	static const Fixed&	max(const Fixed&x, const Fixed& y);
+	static Fixed&		min(Fixed& x, Fixed& y);
+	static const Fixed&	min(const Fixed& x, const Fixed& y);
+	static Fixed&		max(Fixed& x, Fixed& y);
+	static const Fixed&	max(const Fixed& x, const Fixed& y);
+
+	class	DividedByZero {};
 };
 
 std::ostream&	operator<<(std::ostream& lhs, const Fixed& rhs);

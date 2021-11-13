@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 16:21:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/12 17:30:54 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 11:36:47 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Fixed();
 	~Fixed();
 	Fixed(const Fixed& other);
-	Fixed&	operator=(const Fixed &x);
+	Fixed&	operator=(const Fixed& x);
 
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );

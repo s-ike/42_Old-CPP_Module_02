@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/12 23:23:33 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 11:36:18 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ Fixed::Fixed(const Fixed& other)
 	*this = other;
 }
 
-Fixed&	Fixed::operator=(const Fixed &other)
+Fixed&	Fixed::operator=(const Fixed& other)
 {
 #ifndef TEST
 	std::cout << "Assignation operator called" << std::endl;
@@ -163,6 +163,8 @@ Fixed	Fixed::operator*(const Fixed& rhs) const
 
 Fixed	Fixed::operator/(const Fixed& rhs) const
 {
+	if (rhs.toFloat() == 0)
+		throw DividedByZero();
 	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
@@ -206,28 +208,28 @@ Fixed	Fixed::operator--(int)
 /* ************************************************************************** */
 // 等価な要素の場合には、左の要素を返す
 
-Fixed&	Fixed::min(Fixed&x, Fixed& y)
+Fixed&	Fixed::min(Fixed& x, Fixed& y)
 {
 	if (y < x)
 		return y;
 	return x;
 }
 
-const Fixed&	Fixed::min(const Fixed&x, const Fixed& y)
+const Fixed&	Fixed::min(const Fixed& x, const Fixed& y)
 {
 	if (y < x)
 		return y;
 	return x;
 }
 
-Fixed&	Fixed::max(Fixed&x, Fixed& y)
+Fixed&	Fixed::max(Fixed& x, Fixed& y)
 {
 	if (x < y)
 		return y;
 	return x;
 }
 
-const Fixed&	Fixed::max(const Fixed&x, const Fixed& y)
+const Fixed&	Fixed::max(const Fixed& x, const Fixed& y)
 {
 	if (x < y)
 		return y;

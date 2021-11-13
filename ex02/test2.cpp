@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 22:42:25 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/12 23:55:41 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 11:25:30 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main( void ) {
 	Fixed		c(0);
 	Fixed		d(c);
 	const Fixed	e(256);
-	Fixed		f(42.0f);
+	Fixed		f(-42.0f);
 
 
 	print_header("Six comparison operators: >, <, >=, <=, == and !=");
@@ -172,6 +172,16 @@ int main( void ) {
 	std::cout << "e(" << std::setw(10) << e << ") " << test << " f(" << std::setw(10) << f << ") = " << e / f << std::endl;
 	std::cout << "b(" << std::setw(10) << b << ") " << test << " f(" << std::setw(10) << f << ") = " << b / f << std::endl;
 
+	try
+	{
+		print_header("division by zero");
+		std::cout << "a(" << std::setw(10) << a << ") " << test << " c(" << std::setw(10) << c << ") = " << a / c << std::endl;
+	}
+	catch(const Fixed::DividedByZero&)
+	{
+		std::cout << COLOR_CYAN "Divided by zero" COLOR_RESET << std::endl;
+	}
+
 
 	print_header("pre-increment, post-increment, pre-decrement and post-decrement");
 
@@ -205,7 +215,7 @@ int main( void ) {
 	test = "min";
 	print_header(test);
 	std::cout << test << '(' << std::setw(10) << a << ", " << std::setw(10) << b << "): " << Fixed::min(a, b) << std::endl;
-	std::cout << test << '(' << std::setw(10) << b << ", " << std::setw(10) << c << "): " << Fixed::min(b, c) << std::endl;
+	std::cout << test << '(' << std::setw(10) << f << ", " << std::setw(10) << c << "): " << Fixed::min(f, c) << std::endl;
 	std::cout << test << '(' << std::setw(10) << c << ", " << std::setw(10) << d << "): " << Fixed::min(c, d) << std::endl;
 
 	test = "min(const)";
@@ -215,7 +225,7 @@ int main( void ) {
 	test = "max";
 	print_header(test);
 	std::cout << test << '(' << std::setw(10) << a << ", " << std::setw(10) << b << "): " << Fixed::max(a, b) << std::endl;
-	std::cout << test << '(' << std::setw(10) << b << ", " << std::setw(10) << c << "): " << Fixed::max(b, c) << std::endl;
+	std::cout << test << '(' << std::setw(10) << f << ", " << std::setw(10) << c << "): " << Fixed::max(f, c) << std::endl;
 	std::cout << test << '(' << std::setw(10) << c << ", " << std::setw(10) << d << "): " << Fixed::max(c, d) << std::endl;
 
 	test = "max(const)";

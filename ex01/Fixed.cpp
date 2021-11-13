@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 00:45:04 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 11:36:37 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ Fixed::Fixed(const Fixed& other)
 	*this = other;
 }
 
-Fixed&	Fixed::operator=(const Fixed &other)
+Fixed&	Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	_fixed_point_val = other._fixed_point_val;
