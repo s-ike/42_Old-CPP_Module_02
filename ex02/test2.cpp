@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 22:42:25 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 16:05:17 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 17:41:57 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@
 void	print_header(const std::string &str)
 {
 	std::cout << COLOR_CYAN "\n[ " << str << " ]" COLOR_RESET << std::endl;
+}
+
+void	comp(const Fixed& x, const Fixed& y, bool b)
+{
+	std::string	bs = b ? "true" : "false";
+	std::cout << "x(" << std::setw(10) << x << "), y(" << std::setw(10) << y << "): " << bs << std::endl;
+}
+
+void	calc(const Fixed& x, const Fixed& y, const std::string& op, const Fixed& ans)
+{
+	std::cout << std::fixed;
+	std::cout << "x(" << std::setw(10) << x << ") " << op << " y(" << std::setw(10) << y << ") = " << ans << std::endl;
 }
 
 int main( void ) {
@@ -49,137 +61,110 @@ int main( void ) {
 
 	print_header("Six comparison operators: >, <, >=, <=, == and !=");
 
-	std::string	test = ">";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a > b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b > c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c > d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header(">");
+	comp(a, b, a > b);
+	comp(b, c, b > c);
+	comp(c, d, c > d);
 
-	test = "<";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a < b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b < c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c < d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header("<");
+	comp(a, b, a < b);
+	comp(b, c, b < c);
+	comp(c, d, c < d);
 
-	test = ">=";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a >= b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b >= c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c >= d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header(">=");
+	comp(a, b, a >= b);
+	comp(b, c, b >= c);
+	comp(c, d, c >= d);
 
-	test = "<=";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a <= b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b <= c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c <= d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header("<=");
+	comp(a, b, a <= b);
+	comp(b, c, b <= c);
+	comp(c, d, c <= d);
 
-	test = "==";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a == b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b == c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c == d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header("==");
+	comp(a, b, a == b);
+	comp(b, c, b == c);
+	comp(c, d, c == d);
 
-	test = "!=";
-	print_header(test);
-	std::cout << "a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << std::endl;
-	if (a != b)
-		std::cout << "a " << test << " b: true" << std::endl;
-	else
-		std::cout << "a " << test << " b: not true" << std::endl;
-	if (b != c)
-		std::cout << "b " << test << " c: true" << std::endl;
-	else
-		std::cout << "b " << test << " c: not true" << std::endl;
-	if (c != d)
-		std::cout << "c " << test << " d: true" << std::endl;
-	else
-		std::cout << "c " << test << " d: not true" << std::endl;
+	print_header("!=");
+	comp(a, b, a != b);
+	comp(b, c, b != c);
+	comp(c, d, c != d);
 
 
 	print_header("Four arithmetic operators: +, -, *, and /");
 
-	test = "+";
+	Fixed		x, y;
+	std::string	test = "+";
 	print_header(test);
-	std::cout << "a(" << std::setw(10) << a << ") " << test << " b(" << std::setw(10) << b << ") = " << a + b << std::endl;
-	std::cout << "b(" << std::setw(10) << b << ") " << test << " c(" << std::setw(10) << c << ") = " << b + c << std::endl;
-	std::cout << "c(" << std::setw(10) << c << ") " << test << " d(" << std::setw(10) << d << ") = " << c + d << std::endl;
+	calc(a, b, test, Fixed(a) + Fixed(b));
+	calc(b, c, test, Fixed(b) + Fixed(c));
+	calc(c, d, test, Fixed(c) + Fixed(d));
+	x = Fixed(8388605.996f);
+	y = Fixed(1);
+	calc(x, y, test, Fixed(x) + Fixed(y));
+	x = Fixed(8388606.996f);
+	calc(x, y, test, Fixed(x) + Fixed(y));
 
 	test = "-";
 	print_header(test);
-	std::cout << "a(" << std::setw(10) << a << ") " << test << " b(" << std::setw(10) << b << ") = " << a - b << std::endl;
-	std::cout << "b(" << std::setw(10) << b << ") " << test << " c(" << std::setw(10) << c << ") = " << b - c << std::endl;
-	std::cout << "c(" << std::setw(10) << c << ") " << test << " d(" << std::setw(10) << d << ") = " << c - d << std::endl;
+	calc(a, b, test, Fixed(a) - Fixed(b));
+	calc(b, c, test, Fixed(b) - Fixed(c));
+	calc(c, d, test, Fixed(c) - Fixed(d));
+	x = Fixed(-8388606.996f);
+	y = Fixed(1);
+	calc(x, y, test, Fixed(x) - Fixed(y));
+	x = Fixed(-8388607.996f);
+	calc(x, y, test, Fixed(x) - Fixed(y));
+	x = Fixed(-8388608.996f);
+	calc(x, y, test, Fixed(x) - Fixed(y));
 
 	test = "*";
 	print_header(test);
-	std::cout << "a(" << std::setw(10) << a << ") " << test << " b(" << std::setw(10) << b << ") = " << a * b << std::endl;
-	std::cout << "b(" << std::setw(10) << b << ") " << test << " c(" << std::setw(10) << c << ") = " << b * c << std::endl;
-	std::cout << "c(" << std::setw(10) << c << ") " << test << " d(" << std::setw(10) << d << ") = " << c * d << std::endl;
+	calc(a, b, test, Fixed(a) * Fixed(b));
+	calc(b, c, test, Fixed(b) * Fixed(c));
+	calc(c, d, test, Fixed(c) * Fixed(d));
+	x = Fixed(3);
+	y = Fixed(0.5f);
+	calc(x, y, test, Fixed(x) * Fixed(y));
+	y = Fixed(0.1f);
+	calc(x, y, test, Fixed(x) * Fixed(y));
+	x = Fixed(1.1f);
+	y = Fixed(-0.3f);
+	calc(x, y, test, Fixed(x) * Fixed(y));
+	x = Fixed(8388606.996f);
+	y = Fixed(1);
+	calc(x, y, test, Fixed(x) * Fixed(y));
+	y = Fixed(2);
+	calc(x, y, test, Fixed(x) * Fixed(y));
 
 	test = "/";
 	print_header(test);
-	std::cout << "a(" << std::setw(10) << a << ") " << test << " b(" << std::setw(10) << b << ") = " << a / b << std::endl;
-	std::cout << "e(" << std::setw(10) << e << ") " << test << " f(" << std::setw(10) << f << ") = " << e / f << std::endl;
-	std::cout << "b(" << std::setw(10) << b << ") " << test << " f(" << std::setw(10) << f << ") = " << b / f << std::endl;
+	calc(a, b, test, Fixed(a) / Fixed(b));
+	calc(e, f, test, Fixed(e) / Fixed(f));
+	calc(b, f, test, Fixed(b) / Fixed(f));
+	x = Fixed(3);
+	y = Fixed(0.5f);
+	calc(x, y, test, Fixed(x) / Fixed(y));
+	y = Fixed(0.1f);
+	calc(x, y, test, Fixed(x) / Fixed(y));
+	x = Fixed(1.1f);
+	y = Fixed(-0.3f);
+	calc(x, y, test, Fixed(x) / Fixed(y));
+	x = Fixed(-8388607.996f);
+	y = Fixed(1);
+	calc(x, y, test, Fixed(x) / Fixed(y));
+	y = Fixed(2);
+	calc(x, y, test, Fixed(x) / Fixed(y));
 
 	try
 	{
 		print_header("division by zero");
-		std::cout << "a(" << std::setw(10) << a << ") " << test << " c(" << std::setw(10) << c << ") = " << a / c << std::endl;
+		calc(a, c, test, Fixed(a) / Fixed(c));
 	}
 	catch (const std::logic_error& err)
 	{
-		std::cout << COLOR_CYAN << err.what() << COLOR_RESET << std::endl;
+		std::cout << err.what() << std::endl;
 	}
 
 
