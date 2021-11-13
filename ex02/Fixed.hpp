@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 16:21:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 11:35:59 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 16:05:30 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ public:
 	static const Fixed&	min(const Fixed& x, const Fixed& y);
 	static Fixed&		max(Fixed& x, Fixed& y);
 	static const Fixed&	max(const Fixed& x, const Fixed& y);
-
-	class	DividedByZero {};
 };
 
 std::ostream&	operator<<(std::ostream& lhs, const Fixed& rhs);

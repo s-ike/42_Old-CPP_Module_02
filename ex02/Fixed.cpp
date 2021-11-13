@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 11:36:18 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 16:03:46 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ Fixed	Fixed::operator*(const Fixed& rhs) const
 Fixed	Fixed::operator/(const Fixed& rhs) const
 {
 	if (rhs.toFloat() == 0)
-		throw DividedByZero();
+		throw std::logic_error("division by zero");
 	return Fixed(this->toFloat() / rhs.toFloat());
 }
 

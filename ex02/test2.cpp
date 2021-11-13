@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 22:42:25 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 11:25:30 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/13 16:05:17 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,9 @@ int main( void ) {
 		print_header("division by zero");
 		std::cout << "a(" << std::setw(10) << a << ") " << test << " c(" << std::setw(10) << c << ") = " << a / c << std::endl;
 	}
-	catch(const Fixed::DividedByZero&)
+	catch (const std::logic_error& err)
 	{
-		std::cout << COLOR_CYAN "Divided by zero" COLOR_RESET << std::endl;
+		std::cout << COLOR_CYAN << err.what() << COLOR_RESET << std::endl;
 	}
 
 
