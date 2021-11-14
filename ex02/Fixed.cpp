@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 16:03:46 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/14 18:26:23 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ Fixed::Fixed()
 固定小数点分（_bits = 8）左にずらして格納
 */
 Fixed::Fixed(const int x)
+	: _fixed_point_val(x << _bits)
 {
 #ifndef TEST
 	std::cout << "Int constructor called" << std::endl;
 #endif
-	_fixed_point_val = x << _bits;
 }
 
 /*
@@ -43,11 +43,11 @@ Fixed::Fixed(const int x)
 3. Store the rounded x in an integer container
 */
 Fixed::Fixed(const float x)
+	: _fixed_point_val(static_cast<int>(std::roundf(x * (1 << _bits))))
 {
 #ifndef TEST
 	std::cout << "Float constructor called" << std::endl;
 #endif
-	_fixed_point_val = static_cast<int>(roundf(x * (1 << _bits)));
 }
 
 Fixed::~Fixed()
@@ -173,7 +173,7 @@ Fixed	Fixed::operator/(const Fixed& rhs) const
 /* ************************************************************************** */
 
 // ++(*this)
-// 2^-8（0.00390625）を足す
+// add 2^-8 (0.00390625)
 Fixed&	Fixed::operator++()
 {
 	_fixed_point_val += 1;

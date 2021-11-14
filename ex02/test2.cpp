@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 22:42:25 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 17:41:57 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/14 18:58:47 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,12 @@ void	calc(const Fixed& x, const Fixed& y, const std::string& op, const Fixed& an
 	std::cout << "x(" << std::setw(10) << x << ") " << op << " y(" << std::setw(10) << y << ") = " << ans << std::endl;
 }
 
-int main( void ) {
-	print_header("subject test");
-
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-
-	std::cout << b << std::endl;
-
-	std::cout << Fixed::max( a, b ) << std::endl;
-
-
-	print_header("original test");
-
-	Fixed		c(0);
-	Fixed		d(c);
-	const Fixed	e(256);
-	Fixed		f(-42.0f);
-
-
-	print_header("Six comparison operators: >, <, >=, <=, == and !=");
+void	test_comp()
+{
+	Fixed	a(0.0078125f);
+	Fixed	b(Fixed(5.05f) * Fixed(2));
+	Fixed	c(0);
+	Fixed	d(c);
 
 	print_header(">");
 	comp(a, b, a > b);
@@ -90,11 +70,16 @@ int main( void ) {
 	comp(a, b, a != b);
 	comp(b, c, b != c);
 	comp(c, d, c != d);
+}
 
+void	test_calc()
+{
+	Fixed	a(0.0078125f);
+	Fixed	b(Fixed(5.05f) * Fixed(2));
+	Fixed	c(0);
+	Fixed	d(c);
+	Fixed	x, y;
 
-	print_header("Four arithmetic operators: +, -, *, and /");
-
-	Fixed		x, y;
 	std::string	test = "+";
 	print_header(test);
 	calc(a, b, test, Fixed(a) + Fixed(b));
@@ -138,6 +123,9 @@ int main( void ) {
 	y = Fixed(2);
 	calc(x, y, test, Fixed(x) * Fixed(y));
 
+	Fixed	e(256);
+	Fixed	f(-42.0f);
+
 	test = "/";
 	print_header(test);
 	calc(a, b, test, Fixed(a) / Fixed(b));
@@ -166,38 +154,55 @@ int main( void ) {
 	{
 		std::cout << err.what() << std::endl;
 	}
+}
 
+void	test_increment_and_decrement()
+{
+	std::string	tests[] = {"++(value)", "(value)++", "--(value)", "(value)--"};
+	Fixed	a(0.0078125f);
+	Fixed	c(0);
+	Fixed	f(-42.0f);
 
-	print_header("pre-increment, post-increment, pre-decrement and post-decrement");
+	for (unsigned i = 0; i < sizeof(tests) / sizeof(tests[0]); i++)
+	{
+		print_header(tests[i]);
+		switch (i)
+		{
+		case 0:
+			std::cout << std::setw(10) << a << " -> " << tests[i] << ": " << std::setw(10) << ++a << ", after: " << a << std::endl;
+			std::cout << std::setw(10) << c << " -> " << tests[i] << ": " << std::setw(10) << ++c << ", after: " << c << std::endl;
+			std::cout << std::setw(10) << f << " -> " << tests[i] << ": " << std::setw(10) << ++f << ", after: " << f << std::endl;
+			break;
+		case 1:
+			std::cout << std::setw(10) << a << " -> " << tests[i] << ": " << std::setw(10) << a++ << ", after: " << a << std::endl;
+			std::cout << std::setw(10) << c << " -> " << tests[i] << ": " << std::setw(10) << c++ << ", after: " << c << std::endl;
+			std::cout << std::setw(10) << f << " -> " << tests[i] << ": " << std::setw(10) << f++ << ", after: " << f << std::endl;
+			break;
+		case 2:
+			std::cout << std::setw(10) << a << " -> " << tests[i] << ": " << std::setw(10) << --a << ", after: " << a << std::endl;
+			std::cout << std::setw(10) << c << " -> " << tests[i] << ": " << std::setw(10) << --c << ", after: " << c << std::endl;
+			std::cout << std::setw(10) << f << " -> " << tests[i] << ": " << std::setw(10) << --f << ", after: " << f << std::endl;
+			break;
+		case 3:
+			std::cout << std::setw(10) << a << " -> " << tests[i] << ": " << std::setw(10) << a-- << ", after: " << a << std::endl;
+			std::cout << std::setw(10) << c << " -> " << tests[i] << ": " << std::setw(10) << c-- << ", after: " << c << std::endl;
+			std::cout << std::setw(10) << f << " -> " << tests[i] << ": " << std::setw(10) << f-- << ", after: " << f << std::endl;
+		default:
+			break;
+		}
+	}
+}
 
-	test = "++(value)";
-	print_header(test);
-	std::cout << std::setw(10) << a << " -> " << test << ": " << std::setw(10) << ++a << ", after: " << a << std::endl;
-	std::cout << std::setw(10) << c << " -> " << test << ": " << std::setw(10) << ++c << ", after: " << c << std::endl;
-	std::cout << std::setw(10) << f << " -> " << test << ": " << std::setw(10) << ++f << ", after: " << f << std::endl;
+void	test_min_and_max()
+{
+	Fixed		a(0.0078125f);
+	const Fixed	b(Fixed(5.05f) * Fixed(2));
+	Fixed		c(0);
+	Fixed		d(c);
+	const Fixed	e(256);
+	Fixed		f(-42.0f);
 
-	test = "(value)++";
-	print_header(test);
-	std::cout << std::setw(10) << a << " -> " << test << ": " << std::setw(10) << a++ << ", after: " << a << std::endl;
-	std::cout << std::setw(10) << c << " -> " << test << ": " << std::setw(10) << c++ << ", after: " << c << std::endl;
-	std::cout << std::setw(10) << f << " -> " << test << ": " << std::setw(10) << f++ << ", after: " << f << std::endl;
-
-	test = "--(value)";
-	print_header(test);
-	std::cout << std::setw(10) << a << " -> " << test << ": " << std::setw(10) << --a << ", after: " << a << std::endl;
-	std::cout << std::setw(10) << c << " -> " << test << ": " << std::setw(10) << --c << ", after: " << c << std::endl;
-	std::cout << std::setw(10) << f << " -> " << test << ": " << std::setw(10) << --f << ", after: " << f << std::endl;
-
-	test = "(value)--";
-	print_header(test);
-	std::cout << std::setw(10) << a << " -> " << test << ": " << std::setw(10) << a-- << ", after: " << a << std::endl;
-	std::cout << std::setw(10) << c << " -> " << test << ": " << std::setw(10) << c-- << ", after: " << c << std::endl;
-	std::cout << std::setw(10) << f << " -> " << test << ": " << std::setw(10) << f-- << ", after: " << f << std::endl;
-
-
-	print_header("min, max");
-
-	test = "min";
+	std::string	test = "min";
 	print_header(test);
 	std::cout << test << '(' << std::setw(10) << a << ", " << std::setw(10) << b << "): " << Fixed::min(a, b) << std::endl;
 	std::cout << test << '(' << std::setw(10) << f << ", " << std::setw(10) << c << "): " << Fixed::min(f, c) << std::endl;
@@ -216,6 +221,38 @@ int main( void ) {
 	test = "max(const)";
 	print_header(test);
 	std::cout << "max(" << b << ", " << e << "): " << Fixed::max(b, e) << std::endl;
+}
+
+int main( void ) {
+	print_header("subject test");
+
+	Fixed		a;
+	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
+
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+
+	std::cout << b << std::endl;
+
+	std::cout << Fixed::max( a, b ) << std::endl;
+
+
+	print_header("original test");
+
+	print_header("Six comparison operators: >, <, >=, <=, == and !=");
+	test_comp();
+
+	print_header("Four arithmetic operators: +, -, *, and /");
+	test_calc();
+
+	print_header("pre-increment, post-increment, pre-decrement and post-decrement");
+	test_increment_and_decrement();
+
+	print_header("min, max");
+	test_min_and_max();
 
 	return 0;
 }

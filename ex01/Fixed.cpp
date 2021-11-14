@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 17:31:00 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/13 11:36:37 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/14 18:26:00 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ Fixed::Fixed()
 固定小数点分（_bits = 8）左にずらして格納
 */
 Fixed::Fixed(const int x)
+	: _fixed_point_val(x << _bits)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_fixed_point_val = x << _bits;
 }
 
 /*
@@ -39,9 +39,9 @@ Fixed::Fixed(const int x)
 3. Store the rounded x in an integer container
 */
 Fixed::Fixed(const float x)
+	: _fixed_point_val(static_cast<int>(std::roundf(x * (1 << _bits))))
 {
 	std::cout << "Float constructor called" << std::endl;
-	_fixed_point_val = static_cast<int>(std::roundf(x * (1 << _bits)));
 }
 
 Fixed::~Fixed()
